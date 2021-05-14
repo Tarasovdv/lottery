@@ -1,3 +1,5 @@
+import sandbox.PersonInform;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -20,8 +22,10 @@ public class Main {
         persons.add(c);
         persons.add(d);
 
+        ArrayList<PersonInform> personInforms = new ArrayList<PersonInform>();
+
         menu.welcomeMenu();
-        menu.menu(persons);
+        menu.menu(personInforms);
 
 
     }
