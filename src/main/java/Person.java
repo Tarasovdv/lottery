@@ -7,17 +7,12 @@ import java.util.ArrayList;
 @AllArgsConstructor
 public class Person  {
 
-    private String firstName;
-    private String lastName;
-    private String tel;
-    private int number;
+    private String inform;
+    
 
 
     public String toString() {
-        return "Number lottery:" + this.getNumber() +
-                " | Name:" + this.getFirstName() +
-                " | Last Name:" + this.getLastName() +
-                " | Telephone number:" + this.getTel() + "\n";
+        return this.getInform();
     }
 
 }
