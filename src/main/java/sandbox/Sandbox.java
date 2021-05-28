@@ -13,11 +13,11 @@ public class Sandbox {
         BufferedReader br = null;
 
         try {
-            File file = new File("newFile.txt");
+            File file = new File("Persons.txt");
             if (!file.exists()) {
                 file.createNewFile();
             }
-            br = new BufferedReader(new FileReader("newFile.txt"));
+            br = new BufferedReader(new FileReader("Persons.txt"));
             String line;
             while ((line = br.readLine()) != null) {
                 PersonInform pers = new PersonInform(line);
@@ -157,7 +157,7 @@ public class Sandbox {
     }
 
     private static File getFile() throws IOException {
-        File file = new File("newFile.txt");
+        File file = new File("Persons.txt");
         if (!file.exists()) {
             file.createNewFile();
         }

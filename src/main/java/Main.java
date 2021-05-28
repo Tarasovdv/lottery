@@ -12,10 +12,10 @@ public class Main {
 
         System.out.println("->->->->->->->->->->-> WELCOME <-<-<-<-<-<-<-<-<-<-<-<-<");
 
-        ArrayList<Person> persons = new ArrayList<Person>();
+
 
         menu.welcomeMenu();
-        menu.menu(persons);
+        menu.menu();
 
 
     }

@@ -2,6 +2,7 @@ import sandbox.Number;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Controller {
@@ -10,6 +11,18 @@ public class Controller {
         for (Person el : people) {
             System.out.println(el.getInform());
         }
+    }
+
+    void printAllSlots(ArrayList<BoxLottery> slots) {
+        for (BoxLottery el : slots) {
+            System.out.println(el.getLotterySlot());
+        }
+    }
+
+    void clearFile(String path) throws FileNotFoundException {
+        PrintWriter pw = new PrintWriter(path);
+        pw.println("");
+        pw.close();
     }
 
 
@@ -23,7 +36,7 @@ public class Controller {
 
 //    private void readFileCreateList(String path, ArrayList arrayList ) throws IOException {
 //        BufferedReader br = null;
-//        br = new BufferedReader(new FileReader(path)); //"newFile.txt"
+//        br = new BufferedReader(new FileReader(path)); //"Persons.txt"
 //        String line;
 //        while ((line = br.readLine()) != null) {
 //            ArrayList arrayList = new ArrayList();
@@ -64,6 +77,34 @@ public class Controller {
         return (int) (Math.random() * size);
     }
 
+
+//    public  ArrayList<Class> readFile(String path, Class) {
+//        ArrayList<Class> array = new ArrayList<>();
+//        try {
+//            File file = new File(path);
+//            if (!file.exists()) {
+//                file.createNewFile();
+//            }
+//            array = createList(path, array);
+//        } catch (
+//                IOException ex) {
+//            System.out.println("Error: " + ex);
+//        }
+//        return array;
+//    }
+//
+//    public ArrayList createList(String path, ArrayList array) throws IOException {
+//        BufferedReader br = new BufferedReader(new FileReader(path));
+//        String line;
+//        while ((line = br.readLine()) != null) {
+//
+//            array.add(line);
+//        }
+//        br.close();
+//        return array;
+//    }
+
+
     public ArrayList<Person> readFilePerson(String pathNameFile) {
         ArrayList<Person> persons = new ArrayList<>();
         try {
@@ -80,18 +121,6 @@ public class Controller {
         return persons;
     }
 
-    public ArrayList<Person> createListPerson(String pathNameFile, ArrayList<Person> persons) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader(pathNameFile));
-        String line;
-        while ((line = br.readLine()) != null) {
-            Person person = new Person(line);
-            persons.add(person);
-        }
-        br.close();
-        return persons;
-    }
-
-
     public ArrayList<Number> readFileNumber(String pathNameFile) {
         ArrayList<Number> numbers = new ArrayList<>();
         try {
@@ -107,6 +136,47 @@ public class Controller {
         }
         return numbers;
     }
+
+    public ArrayList<BoxLottery> readFileBoxLottery(String pathNameFile) {
+        ArrayList<BoxLottery> slots = new ArrayList<>();
+        try {
+            File file = new File(pathNameFile);
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            slots = createListSlot(pathNameFile, slots);
+
+        } catch (
+                IOException ex) {
+            System.out.println("Error: " + ex);
+        }
+        return slots;
+    }
+
+
+    public ArrayList<BoxLottery> createListSlot(String pathNameFile, ArrayList<BoxLottery> slots) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(pathNameFile));
+        String line;
+        while ((line = br.readLine()) != null) {
+            BoxLottery slot = new BoxLottery((line));
+            slots.add(slot);
+        }
+        br.close();
+        return slots;
+    }
+
+
+    public ArrayList<Person> createListPerson(String pathNameFile, ArrayList<Person> persons) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(pathNameFile));
+        String line;
+        while ((line = br.readLine()) != null) {
+            Person person = new Person(line);
+            persons.add(person);
+        }
+        br.close();
+        return persons;
+    }
+
 
     public ArrayList<Number> createListNumber(String pathNameFile, ArrayList<Number> numbers) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(pathNameFile));
@@ -159,7 +229,7 @@ public class Controller {
     public String choosePerson(ArrayList<Person> persons) {
         int sizePersons = persons.size();
         System.out.println("Количество участников лоттереи: " + sizePersons);
-        System.out.println("Выберите участника (номер или Имя) для присваивания номерка: ");
+        System.out.println("Выберите участника (номер) для присваивания номерка: ");
         printAllPersons(persons);
         Scanner console = new Scanner(System.in);
         String candidate = console.nextLine();
@@ -197,34 +267,6 @@ public class Controller {
             pw.println(slots.get(i).getLotterySlot());
         }
         pw.close();
-    }
-
-    public ArrayList<BoxLottery> readFileBoxLottery(String pathNameFile) {
-        ArrayList<BoxLottery> slots = new ArrayList<>();
-        try {
-            File file = new File(pathNameFile);
-            if (!file.exists()) {
-                file.createNewFile();
-            }
-            slots = createListSlot(pathNameFile, slots);
-
-        } catch (
-                IOException ex) {
-            System.out.println("Error: " + ex);
-        }
-        return slots;
-    }
-
-
-    public ArrayList<BoxLottery> createListSlot(String pathNameFile, ArrayList<BoxLottery> slots) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader(pathNameFile));
-        String line;
-        while ((line = br.readLine()) != null) {
-            BoxLottery slot = new BoxLottery((line));
-            slots.add(slot);
-        }
-        br.close();
-        return slots;
     }
 
 
